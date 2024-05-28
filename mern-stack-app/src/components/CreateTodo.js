@@ -9,7 +9,7 @@ export default class CreateToDo extends Component{
         this.onChangeCompleted = this.onChangeCompleted.bind(this);
         this.onChangeCreatedAt = this.onChangeCreatedAt.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
-
+        
         this.state = {
             username: '',
             title: '',
@@ -67,18 +67,22 @@ export default class CreateToDo extends Component{
     render() {
         return(
         <div>
+            {/* This is to create input so the user can create a new to do task */}
             <h3>Create a New To Do Item</h3>
             <form onSubmit={this.onSubmit}>
                 <div className="form-group">
-                    <label>Username:</label>
-                    <select ref="userInput"
+                    <label>Enter Username:</label>
+                    {/* This is to select specific user  */}
+                    <select 
+                    ref="userInput"
                     required
                     className="form-control"
-                    value={this.state.username}
+                    value={this.state.username}  
                     onChange={this.onChangeUsername}>
                         {
                             this.state.users.map(function(user) {
-                                return <option key={user}
+                                return <option 
+                                key={user}
                                 value={user}> {user} </option>;
                             })
                         }
@@ -86,20 +90,45 @@ export default class CreateToDo extends Component{
                     </select>
 
                 </div>
-
-                {/* Same thing but for the rest, title,completion */}
+                
+                <br/>
+                {/* Same thing but for the rest, title,completion, etc */}
                 <div className="form-group">
-                    <label> Title of Task:</label>
-                    <input type="text" 
+                    <label> To Do Task:</label>
+                    <input 
+                    type="text" 
                     required
                     className="form-control"
                     value={this.state.description}
                     onChange={this.onChangeTitle}
                     />
-
                 </div>
-
-
+                <br/>
+                <div className="form-group">
+                    <label>Completed</label>
+                    <input 
+                    type="checkbox"
+                    className="form-check-input"
+                    checked={this.state.completed}
+                    onChange={this.onChangeCompleted} 
+                    />
+                </div>
+                <br/>
+                <div className="form-group">
+                    <label> Date:</label>
+                    <input 
+                    type="date" 
+                    required
+                    className="form-control"
+                    value={this.state.date}
+                    onChange={this.onChangeCreatedAt}
+                    />
+                </div>           
+                < br/>
+                {/* Submit button */}
+                <div className="form-group">
+                 <input type="submit" value="Submit" className="btn btn-primary" />
+                </div>
 
 
 
