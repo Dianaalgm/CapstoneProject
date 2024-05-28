@@ -10,10 +10,10 @@ const Navbar = () => (
     <div className="collapse navbar-collapse" id="navbarNav">
       <ul className="navbar-nav me-auto">
         <li className="navbar-item">
-          <Link to="/" className="nav-link">Todos</Link>
+          <Link to="/" className="nav-link">To Do</Link>
         </li>
         <li className="navbar-item">
-          <Link to="/create" className="nav-link">Create Todo</Link>
+          <Link to="/create" className="nav-link">Create A To Do Item</Link>
         </li>
         <li className="navbar-item">
           <Link to="/user" className="nav-link">Create User</Link>

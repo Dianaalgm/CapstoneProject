@@ -10,10 +10,10 @@ import EditToDo from "./components/EditToDo";
 import CreateToDo from "./components/CreateTodo";
 import CreateUser from "./components/CreateUser";
 
-const App = () => {
+function App() {
   return (
     <Router>
-      <div className='navContainer'>
+      <div className='container'>
         <Navbar />
         <br />
         <Routes>
@@ -22,7 +22,7 @@ const App = () => {
           <Route path="/create" element={<CreateToDo />} />
           <Route path="/user" element={<CreateUser />} />
         </Routes>
-      </div>
+        </div>
     </Router>
   );
 }
