@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import axios from 'axios';
 
 const CreateToDo = () => {
   const [username, setUsername] = useState('');
@@ -7,9 +8,29 @@ const CreateToDo = () => {
   const [createdAt, setCreatedAt] = useState(new Date().toISOString().split('T')[0]);
   const [users, setUsers] = useState([]);
 
+  // useEffect(() => {
+  //   setUsers(['Username']);
+  //   setUsername('test user');
+  // }, []);
+
+  //This is to give us options for selecting a username that is already
+  //in the database-----
   useEffect(() => {
-    setUsers(['Username']);
-    setUsername('test user');
+    const fetchUsers = async () => {
+      try {
+        const response = await axios.get('http://localhost:3000/users');
+        const users = response.data;
+        
+        if (users.length > 0) {
+          setUsers(users.map(user => user.username));
+          setUsername(users[0].username);
+        }
+      } catch (error) {
+        console.error("There was an error fetching the users!", error);
+      }
+    };
+
+    fetchUsers();
   }, []);
 
   const onSubmit = (e) => {
@@ -24,8 +45,27 @@ const CreateToDo = () => {
 
     console.log(todo);
 
+    axios.post('http://localhost:3000/todo/add', todo)
+            .then(res => {
+                console.log(res.data);
+                
+            })
+            .catch(error => console.error('Error:', error));
+
     window.location = '/';
   };
+  // componentDidMount() {
+  //   axios.get('http://localhost:3000/users')
+  //   .then(response => {
+  //     if (response.data.length>0) {
+  //       this.setState({
+  //         users: response.data.map(user => user.username),
+  //         username: response.data[0].username
+  //       })
+  //     }
+
+  //   })
+  // }
 
   return (
     <div>
