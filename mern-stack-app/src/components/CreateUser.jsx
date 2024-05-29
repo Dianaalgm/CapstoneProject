@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
-
+import axios from 'axios';
 
 const CreateUser = () =>{
     const [username, setUsername] = useState('');
-    const [users, setUsers] = useState(['']);
+    const [users, setUsers] = useState([]);
 
 
     useEffect(() => {
@@ -13,9 +13,32 @@ const CreateUser = () =>{
 
     const onSubmit = (e) => {
         e.preventDefault();
-        // console.log(`Username: ${username}`)
-        window.location = '/user';
+        const user = {
+            username:username
+        }
+        console.log(user)
+        // window.location = '/user';
+
+        axios.post('http://localhost:3000/users/add', user)
+            .then(res => {
+                console.log(res.data);
+                // window.location = '/users';
+            })
+            .catch(error => console.error('Error:', error));
+
+        // this is to merge with backend, a post request
+        // const addUser = async (user) => {
+        //     try {
+        //         const response = await axios.post('http://localhost:3000/user/add', user);
+        //         console.log(response.data);
+        //     } catch (error) {
+        //         console.error('Error:', error);
+        //     }
+        // };
+        // addUser(user);
     }
+
+
     return(
         <div>
             <h3>Create a New User</h3>

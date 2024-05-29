@@ -16,7 +16,7 @@ const Navbar = () => (
           <Link to="/create" className="nav-link">Create A To Do Item</Link>
         </li>
         <li className="navbar-item">
-          <Link to="/user" className="nav-link">Create User</Link>
+          <Link to="/users" className="nav-link">Create User</Link>
         </li>
       </ul>
     </div>

@@ -20,7 +20,7 @@ function App() {
           <Route path="/" element={<ToDoList />} />
           <Route path="/edit/:id" element={<EditToDo />} />
           <Route path="/create" element={<CreateToDo />} />
-          <Route path="/user" element={<CreateUser />} />
+          <Route path="/users" element={<CreateUser />} />
         </Routes>
         </div>
     </Router>
