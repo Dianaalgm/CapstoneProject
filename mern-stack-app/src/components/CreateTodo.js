@@ -1,149 +1,93 @@
-import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
 
-export default class CreateToDo extends Component{
-    constructor(props){
-        super(props);
+const CreateToDo = () => {
+  const [username, setUsername] = useState('');
+  const [title, setTitle] = useState('');
+  const [completed, setCompleted] = useState(false);
+  const [createdAt, setCreatedAt] = useState(new Date().toISOString().split('T')[0]);
+  const [users, setUsers] = useState([]);
 
-        this.onChangeUsername = this.onChangeUsername.bind(this);
-        this.onChangeTitle = this.onChangeTitle.bind(this);
-        this.onChangeCompleted = this.onChangeCompleted.bind(this);
-        this.onChangeCreatedAt = this.onChangeCreatedAt.bind(this);
-        this.onSubmit = this.onSubmit.bind(this);
+  useEffect(() => {
+    setUsers(['Username']);
+    setUsername('test user');
+  }, []);
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+
+    const todo = {
+      username,
+      title,
+      completed,
+      createdAt
+    };
+
+    console.log(todo);
+
+    window.location = '/';
+  };
+
+  return (
+    <div>
+      <h3>Create a New To Do Item</h3>
+      <form onSubmit={onSubmit}>
+        <div className="form-group">
+          <label>Enter Username:</label>
+          <select
+            required
+            className="form-control"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+          >
+            {users.map((user) => (
+              <option key={user} value={user}>{user}</option>
+            ))}
+          </select>
+        </div>
         
-        this.state = {
-            username: '',
-            title: '',
-            completed: true,
-            createdAt: new Date(),
-            users: []
-        }
-    }
+        <br />
+        <div className="form-group">
+          <label>To Do Task:</label>
+          <input
+            type="text"
+            required
+            className="form-control"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+          />
+        </div>
+        <br />
+        <div className="form-group">
+          <label>Completed</label>
+          <input
+            type="checkbox"
+            className="form-check-input"
+            checked={completed}
+            onChange={(e) => setCompleted(e.target.checked)}
+          />
+        </div>
+        <br />
+        <div className="form-group">
+          <label>Date:</label>
+          <input
+            type="date"
+            required
+            className="form-control"
+            value={createdAt}
+            onChange={(e) => setCreatedAt(e.target.value)}
+          />
+        </div>           
+        <br />
+        <div className="form-group">
+          <input type="submit" value="Submit" className="btn btn-primary" />
+        </div>
+      </form>
+    </div>
+  );
+};
 
-    //will be called right before anything is displayed on page
-    componentDidMount(){
-        this.setState({
-            users: ['Username'],
-            username: 'test user'
-        })
-    }
+export default CreateToDo;
 
-    onChangeUsername(e) {
-        this.setState({
-            username: e.target.value
-        }) 
-    }
-    onChangeTitle(e) {
-        this.setState({
-            title: e.target.value
-        }) 
-    }
-    onChangeCompleted(e) {
-        this.setState({
-            completed: e.target.value
-        }) 
-    }
-    onChangeCreatedAt(date) {
-        this.setState({
-            createdAt: date
-        })
-    }
-
-    onSubmit(e){
-        e.preventDefault();
-
-        const todo = {
-            username: this.state.username,
-            title: this.state.title,
-            completed: this.state.completed,
-            createdAt: this.state.createdAt
-        }
-        console.log(todo)
-
-        window.location= '/';
-    }
-
-
-
-    render() {
-        return(
-        <div>
-            {/* This is to create input so the user can create a new to do task */}
-            <h3>Create a New To Do Item</h3>
-            <form onSubmit={this.onSubmit}>
-                <div className="form-group">
-                    <label>Enter Username:</label>
-                    {/* This is to select specific user  */}
-                    <select 
-                    ref="userInput"
-                    required
-                    className="form-control"
-                    value={this.state.username}  
-                    onChange={this.onChangeUsername}>
-                        {
-                            this.state.users.map(function(user) {
-                                return <option 
-                                key={user}
-                                value={user}> {user} </option>;
-                            })
-                        }
-                
-                    </select>
-
-                </div>
-                
-                <br/>
-                {/* Same thing but for the rest, title,completion, etc */}
-                <div className="form-group">
-                    <label> To Do Task:</label>
-                    <input 
-                    type="text" 
-                    required
-                    className="form-control"
-                    value={this.state.description}
-                    onChange={this.onChangeTitle}
-                    />
-                </div>
-                <br/>
-                <div className="form-group">
-                    <label>Completed</label>
-                    <input 
-                    type="checkbox"
-                    className="form-check-input"
-                    checked={this.state.completed}
-                    onChange={this.onChangeCompleted} 
-                    />
-                </div>
-                <br/>
-                <div className="form-group">
-                    <label> Date:</label>
-                    <input 
-                    type="date" 
-                    required
-                    className="form-control"
-                    value={this.state.date}
-                    onChange={this.onChangeCreatedAt}
-                    />
-                </div>           
-                < br/>
-                {/* Submit button */}
-                <div className="form-group">
-                 <input type="submit" value="Submit" className="btn btn-primary" />
-                </div>
-
-
-
-
-
-
-
-            </form>
-
-
-
-        </div>  
-        )
-    }
-}
 
 // import React from 'react';
 
