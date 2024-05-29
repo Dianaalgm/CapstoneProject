@@ -1,14 +1,15 @@
-import React, { Component } from "react";
+import React from "react";
 
-export default class EditToDo extends Component{
-    render() {
-        return(
-            <div>
-                <p> This is where you can edit To Do List</p>
-            </div>
-        )
-    }
-}
+const EditToDo = () => {
+    return (
+        <div>
+            <p>This is where you can edit To Do List</p>
+        </div>
+    );
+};
+
+export default EditToDo;
+
 
 // import React from 'react';
 
