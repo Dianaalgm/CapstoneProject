@@ -14,7 +14,7 @@ export default class CreateToDo extends Component{
             username: '',
             title: '',
             completed: true,
-            createdAt: new Date(),
+            createdAt: new Date().toISOString().split('T')[0],
             users: []
         }
     }
@@ -39,12 +39,12 @@ export default class CreateToDo extends Component{
     }
     onChangeCompleted(e) {
         this.setState({
-            completed: e.target.value
+            completed: e.target.checked
         }) 
     }
-    onChangeCreatedAt(date) {
+    onChangeCreatedAt(e) {
         this.setState({
-            createdAt: date
+            createdAt: e.target.value
         })
     }
 
@@ -74,16 +74,14 @@ export default class CreateToDo extends Component{
                     <label>Enter Username:</label>
                     {/* This is to select specific user  */}
                     <select 
-                    ref="userInput"
+                    // ref="userInput"
                     required
                     className="form-control"
                     value={this.state.username}  
                     onChange={this.onChangeUsername}>
                         {
                             this.state.users.map(function(user) {
-                                return <option 
-                                key={user}
-                                value={user}> {user} </option>;
+                                return <option key={user} value={user}> {user} </option>;
                             })
                         }
                 
@@ -99,7 +97,7 @@ export default class CreateToDo extends Component{
                     type="text" 
                     required
                     className="form-control"
-                    value={this.state.description}
+                    value={this.state.title}
                     onChange={this.onChangeTitle}
                     />
                 </div>
@@ -120,7 +118,7 @@ export default class CreateToDo extends Component{
                     type="date" 
                     required
                     className="form-control"
-                    value={this.state.date}
+                    value={this.state.createdAt}
                     onChange={this.onChangeCreatedAt}
                     />
                 </div>           
@@ -130,14 +128,7 @@ export default class CreateToDo extends Component{
                  <input type="submit" value="Submit" className="btn btn-primary" />
                 </div>
 
-
-
-
-
-
-
             </form>
-
 
 
         </div>  
