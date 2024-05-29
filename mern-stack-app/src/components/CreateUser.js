@@ -1,14 +1,50 @@
-import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
 
-export default class CreateUser extends Component{
-    render() {
-        return(
-            <div>
-                <p> This to create a new user</p>
-            </div>
-        )
+
+const CreateUser = () =>{
+    const [username, setUsername] = useState('');
+    const [users, setUsers] = useState(['']);
+
+
+    useEffect(() => {
+        setUsers(['Username']);
+        setUsername('test user');
+    }, []);
+
+    const onSubmit = (e) => {
+        e.preventDefault();
+        // console.log(`Username: ${username}`)
+        window.location = '/user';
     }
-}
+    return(
+        <div>
+            <h3>Create a New To Do Item</h3>
+            <form onSubmit={onSubmit}>
+                <div className="form-group">
+                    <label>Enter Username:</label>
+                    <select type="text"
+                        required
+                        className="form-control"
+                        value={username}
+                        onChange={(e) => setUsername(e.target.value)}
+                        >
+                        {users.map((user) => (
+                        <option key={user} value={user}>{user}</option>))}
+                    </select>
+                </div>
+                
+                <br />
+                <div className="form-group">
+                    <input type="submit" value="Submit" className="btn btn-primary" />
+                </div>
+    
+            </form>
+
+        </div>
+    )
+};
+
+export default CreateUser;
 
 // import React from 'react';
 
