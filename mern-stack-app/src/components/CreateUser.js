@@ -18,11 +18,11 @@ const CreateUser = () =>{
     }
     return(
         <div>
-            <h3>Create a New To Do Item</h3>
+            <h3>Create a New User</h3>
             <form onSubmit={onSubmit}>
                 <div className="form-group">
                     <label>Enter Username:</label>
-                    <select type="text"
+                    <select 
                         required
                         className="form-control"
                         value={username}
