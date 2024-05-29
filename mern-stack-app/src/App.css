@@ -42,5 +42,9 @@ body{
 }
 
 .todoContainer{
-  font-family:Verdana, Geneva, Tahoma, sans-serif;
+  font-family:Georgia, 'Times New Roman', Times, serif;
+  margin: 1em;
+}
+.tbodyContainer{
+font-family:Georgia, 'Times New Roman', Times, serif;
 }
