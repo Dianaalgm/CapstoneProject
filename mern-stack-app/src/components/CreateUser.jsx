@@ -3,11 +3,11 @@ import axios from 'axios';
 
 const CreateUser = () =>{
     const [username, setUsername] = useState('');
-    const [users, setUsers] = useState([]);
+    // const [users, setUsers] = useState([]);
 
 
     useEffect(() => {
-        setUsers(['Username']);
+        // setUsers(['Username']);
         setUsername('test user');
     }, []);
 
@@ -39,21 +39,19 @@ const CreateUser = () =>{
     }
 
 
-    return(
+    return (
         <div>
             <h3>Create a New User</h3>
             <form onSubmit={onSubmit}>
                 <div className="form-group">
                     <label>Enter Username:</label>
-                    <select 
-                        required
-                        className="form-control"
-                        value={username}
-                        onChange={(e) => setUsername(e.target.value)}
-                        >
-                        {users.map((user) => (
-                        <option key={user} value={user}>{user}</option>))}
-                    </select>
+                    <input 
+                        type="text" 
+                        required 
+                        className="form-control" 
+                        value={username} 
+                        onChange={(e) => setUsername(e.target.value)} 
+                    />
                 </div>
                 
                 <br />
