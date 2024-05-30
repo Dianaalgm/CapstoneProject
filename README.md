@@ -34,3 +34,21 @@ Middleware and Routes:
 
 todoRouter: Handles routes related to to-do items.
 usersRouter: Handles routes related to users.
+
+Challenges
+During the development of this project, I encountered several challenges such as :
+Database Connectivity:
+I faced issues getting my routes to connect to the database. These problems were often due to misspellings or misplaced parentheses/annotations.
+
+Repository Management:
+I had trouble pushing my project. Initially, only the backend files were being pushed to the repository. To resolve this, I had to create a new repository. With some help, I was able to commit and push both the backend and frontend files successfully.
+
+Resources
+To overcome these challenges and structure my project, I utilized various resources such as:
+YouTube tutorials
+Past Zoom recordings
+
+Future Plans
+Although I wasn't able to add my personal touch of styling in time, I plan to continue working on this project. My goals include:
+Adding an edit button
+Enhancing the styling to make the application more visually appealing
